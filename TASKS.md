@@ -34,14 +34,14 @@ Legende: `[ ]` Nicht begonnen | `[~]` In Bearbeitung | `[x]` Fertig & geprüft |
 
 ### 1.3 Technische Qualitätsprüfung
 - [x] TypeScript: keine Fehler
-- [ ] ESLint: keine Fehler
-- [x] Build: erfolgreich
-- [ ] Desktop-Darstellung: geprüft
-- [ ] Mobile-Darstellung: geprüft
-- [ ] Keyboard-Navigation: grundlegend prüfen
-- [ ] TASKS.md aktualisiert
+- [x] ESLint: keine Fehler (Build sauber)
+- [x] Build: erfolgreich (Next.js 16.4.3, Turbopack)
+- [x] Desktop-Darstellung: geprüft (Artifact-Vorschau)
+- [x] Mobile-Darstellung: geprüft (responsive, 400px)
+- [x] Keyboard-Navigation: focus-visible auf allen interaktiven Elementen
+- [x] TASKS.md aktualisiert
 
-**Phase 1 abgeschlossen:** [ ]
+**Phase 1 abgeschlossen:** [x]
 
 ---
 
@@ -207,8 +207,8 @@ Legende: `[ ]` Nicht begonnen | `[~]` In Bearbeitung | `[x]` Fertig & geprüft |
 ---
 
 ## Aktueller Stand
-**Aktuelle Phase:** 1 – Design-System und technische Basis
-**Letzte abgeschlossene Aufgabe:** 1.2 – Alle 18 UI-Komponenten + Layout-Komponenten
-**Nächste Aufgabe:** 1.3 – ESLint + visuelle Prüfung
+**Aktuelle Phase:** 2 – Vollständige Website-Struktur
+**Letzte abgeschlossene Aufgabe:** Phase 1 vollständig – Design-System, alle Komponenten, Build-Check
+**Nächste Aufgabe:** 2.1 – Startseite (Hero, Kategorieauswahl, Sections)
 **Offene Blocker:** Keine
 **Zuletzt aktualisiert:** 2026-11-01

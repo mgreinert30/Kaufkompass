@@ -21,8 +21,10 @@ const footerLinks = {
   ],
 };
 
+const YEAR = 2026;
+
 function Footer() {
-  const year = new Date().getFullYear();
+  const year = YEAR;
 
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--surface)]">
