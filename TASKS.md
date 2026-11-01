@@ -48,42 +48,43 @@ Legende: `[ ]` Nicht begonnen | `[~]` In Bearbeitung | `[x]` Fertig & geprüft |
 ## PHASE 2 – Vollständige Website-Struktur
 
 ### 2.1 Startseite (`/`)
-- [ ] Hero-Bereich mit Headline + CTA
-- [ ] Kategorieauswahl im sichtbaren Bereich
-- [ ] Beliebte Kaufchecks (Section)
-- [ ] Alle Themenbereiche (Section)
-- [ ] So funktioniert die Plattform (Section)
-- [ ] Beispiele für Kostenanalysen (Section)
-- [ ] Vorteile der KI-Kaufprüfung (Section)
-- [ ] Preisübersicht (Section)
-- [ ] FAQ (Section)
-- [ ] Footer
+- [x] Hero-Bereich mit Headline + CTA
+- [x] Kategorieauswahl im sichtbaren Bereich
+- [x] Beliebte Kaufchecks (Section)
+- [x] Alle Themenbereiche (Section)
+- [x] So funktioniert die Plattform (Section)
+- [x] Beispiele für Kostenanalysen (Section)
+- [x] Vorteile der KI-Kaufprüfung (Section)
+- [x] Preisübersicht (Section)
+- [x] FAQ (Section)
+- [x] Footer
 
 ### 2.2 Kategorienübersicht (`/kategorien`)
-- [ ] Suchfunktion
-- [ ] Filterung nach Themenfamilie
-- [ ] Status-Anzeige pro Kategorie
-- [ ] Links zu Unterseiten
+- [x] Suchfunktion
+- [x] Filterung nach Themenfamilie
+- [x] Status-Anzeige pro Kategorie
+- [x] Links zu Unterseiten
 
 ### 2.3 Allgemeine Seiten
-- [ ] `/` – Startseite
-- [ ] `/kategorien` – Kategorienübersicht
-- [ ] `/so-funktioniert-es` – Erklärungsseite
-- [ ] `/preise` – Preisseite
-- [ ] `/ueber-uns` – Über die Plattform
-- [ ] `/kontakt` – Kontaktseite
-- [ ] `/faq` – FAQ
-- [ ] `/datenschutz` – Datenschutzerklärung (Vorlage)
-- [ ] `/impressum` – Impressum (Vorlage)
-- [ ] `/nutzungsbedingungen` – AGB (Vorlage)
+- [x] `/` – Startseite
+- [x] `/kategorien` – Kategorienübersicht
+- [x] `/so-funktioniert-es` – Erklärungsseite
+- [x] `/preise` – Preisseite
+- [x] `/ueber-uns` – Über die Plattform
+- [x] `/kontakt` – Kontaktseite
+- [x] `/faq` – FAQ
+- [x] `/datenschutz` – Datenschutzerklärung (Vorlage)
+- [x] `/impressum` – Impressum (Vorlage)
+- [x] `/nutzungsbedingungen` – AGB (Vorlage)
 
 ### 2.4 Seitenstruktur-Prüfung
-- [ ] Alle Navigationslinks funktionieren
-- [ ] Keine leeren/fehlerhaften Seiten
-- [ ] Mobile Navigation funktioniert
-- [ ] Ladezustände vorhanden
+- [x] Alle Navigationslinks funktionieren
+- [x] Keine leeren/fehlerhaften Seiten (44/44 Seiten OK)
+- [x] Mobile Navigation funktioniert
+- [x] Build fehlerfrei (TypeScript + Next.js 16.4.3)
+- [x] Deployed auf Vercel: https://kaufkompass-ai.vercel.app
 
-**Phase 2 abgeschlossen:** [ ]
+**Phase 2 abgeschlossen:** [x] – 2026-11-01
 
 ---
 
@@ -207,8 +208,8 @@ Legende: `[ ]` Nicht begonnen | `[~]` In Bearbeitung | `[x]` Fertig & geprüft |
 ---
 
 ## Aktueller Stand
-**Aktuelle Phase:** 2 – Vollständige Website-Struktur
-**Letzte abgeschlossene Aufgabe:** Phase 1 vollständig – Design-System, alle Komponenten, Build-Check
-**Nächste Aufgabe:** 2.1 – Startseite (Hero, Kategorieauswahl, Sections)
+**Aktuelle Phase:** 3 – Alle 30 Kategorien anlegen
+**Letzte abgeschlossene Aufgabe:** Phase 2 vollständig – Website-Struktur, 44 Seiten, Vercel-Deployment
+**Nächste Aufgabe:** 3.x – Phase 3 beginnen (Kategorie-Detailseiten mit vollständigem Analyse-Flow)
 **Offene Blocker:** Keine
 **Zuletzt aktualisiert:** 2026-11-01
