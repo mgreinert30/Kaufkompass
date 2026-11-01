@@ -13,29 +13,29 @@ Legende: `[ ]` Nicht begonnen | `[~]` In Bearbeitung | `[x]` Fertig & geprüft |
 - [x] CSS-Variablen für Light/Dark-Theme
 
 ### 1.2 Wiederverwendbare Komponenten
-- [ ] Header
-- [ ] Navigation (Desktop)
-- [ ] Mobile Navigation (Hamburger/Drawer)
-- [ ] Footer
-- [ ] Button (Primary, Secondary, Ghost, Destructive)
-- [ ] CategoryCard
-- [ ] FeatureCard
-- [ ] UploadComponent
-- [ ] InputComponent (mit Label, Fehler, Helfertext)
-- [ ] ProgressIndicator
-- [ ] StatusBadge
-- [ ] PriceDisplay
-- [ ] AnalysisResultCard
-- [ ] WarningCard
-- [ ] ComparisonTable
-- [ ] LoadingSkeleton
-- [ ] EmptyState
-- [ ] ErrorState
+- [x] Header
+- [x] Navigation (Desktop)
+- [x] Mobile Navigation (Hamburger/Drawer)
+- [x] Footer
+- [x] Button (Primary, Secondary, Ghost, Destructive)
+- [x] CategoryCard
+- [x] FeatureCard
+- [x] UploadComponent
+- [x] InputComponent (mit Label, Fehler, Helfertext)
+- [x] ProgressIndicator
+- [x] StatusBadge
+- [x] PriceDisplay
+- [x] AnalysisResultCard
+- [x] WarningCard
+- [x] ComparisonTable
+- [x] LoadingSkeleton
+- [x] EmptyState
+- [x] ErrorState
 
 ### 1.3 Technische Qualitätsprüfung
-- [ ] TypeScript: keine Fehler
+- [x] TypeScript: keine Fehler
 - [ ] ESLint: keine Fehler
-- [ ] Build: erfolgreich
+- [x] Build: erfolgreich
 - [ ] Desktop-Darstellung: geprüft
 - [ ] Mobile-Darstellung: geprüft
 - [ ] Keyboard-Navigation: grundlegend prüfen
@@ -208,7 +208,7 @@ Legende: `[ ]` Nicht begonnen | `[~]` In Bearbeitung | `[x]` Fertig & geprüft |
 
 ## Aktueller Stand
 **Aktuelle Phase:** 1 – Design-System und technische Basis
-**Letzte abgeschlossene Aufgabe:** 1.1 – Design-Tokens, globals.css, DESIGN_SYSTEM.md
-**Nächste Aufgabe:** 1.2 – UI-Komponenten (Header, Nav, Footer, Button, Cards...)
+**Letzte abgeschlossene Aufgabe:** 1.2 – Alle 18 UI-Komponenten + Layout-Komponenten
+**Nächste Aufgabe:** 1.3 – ESLint + visuelle Prüfung
 **Offene Blocker:** Keine
 **Zuletzt aktualisiert:** 2026-11-01
