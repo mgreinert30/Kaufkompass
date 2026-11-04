@@ -5,7 +5,7 @@ export const BRANDING = {
   description:
     "Lass Kaufpreise, Angebote und Folgekosten intelligent analysieren – damit du fundierte Entscheidungen treffen kannst.",
   url: "https://kaufkompass.ai",
-  email: "hallo@kaufkompass.ai",
+  email: "support@kaufkompass-ai.de",
   logo: {
     text: "KaufKompass",
     highlight: "AI",
