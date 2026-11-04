@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import * as Icons from "lucide-react";
-import type { LucideProps } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CategoryIcon } from "@/components/ui/category-icon";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { CategoryConfig } from "@/config/categories";
 import { STATUS_LABELS, STATUS_BADGE_VARIANT } from "@/config/categories";
@@ -10,13 +9,6 @@ import { STATUS_LABELS, STATUS_BADGE_VARIANT } from "@/config/categories";
 interface CategoryCardHomeProps {
   category: CategoryConfig;
   className?: string;
-}
-
-function DynamicIcon({ name, ...props }: { name: string } & LucideProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const Icon = (Icons as any)[name] as React.FC<LucideProps> | undefined;
-  if (!Icon) return <Icons.Tag {...props} />;
-  return <Icon {...props} />;
 }
 
 export function CategoryCardHome({ category, className }: CategoryCardHomeProps) {
@@ -33,9 +25,12 @@ export function CategoryCardHome({ category, className }: CategoryCardHomeProps)
       )}
     >
       <div className="mb-4 flex items-start justify-between gap-2">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#DCFCE7] text-[#14532D] dark:bg-[#14532D]/30 dark:text-[#4ade80] transition-colors group-hover:bg-[#BBF7D0]">
-          <DynamicIcon name={category.icon} className="h-5 w-5" />
-        </div>
+        <CategoryIcon
+          name={category.icon}
+          size="md"
+          variant="default"
+          className="transition-colors group-hover:bg-[#DCFCE7]"
+        />
         <StatusBadge variant={badgeVariant}>
           {STATUS_LABELS[category.status]}
         </StatusBadge>

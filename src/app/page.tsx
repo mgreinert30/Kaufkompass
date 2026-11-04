@@ -2,6 +2,8 @@ import Link from "next/link";
 import {
   ArrowRight, CheckCircle2, Shield, TrendingUp, Clock,
   Upload, BarChart3, FileDown, ChevronRight,
+  House, CarFront, Sun, Hammer,
+  Calculator, BarChart2, BrainCircuit, BookOpen,
 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -126,17 +128,17 @@ export default function HomePage() {
 
                   <div className="relative grid grid-cols-2 gap-3">
                     {[
-                      { emoji: "🏠", label: "Immobilien-Kaufcheck",  sub: "Kaufnebenkosten + Finanzierung" },
-                      { emoji: "🚗", label: "Gebrauchtwagen-Check",  sub: "Betriebskosten 5 Jahre" },
-                      { emoji: "☀️", label: "Photovoltaik-Check",    sub: "Ertrag & Amortisation" },
-                      { emoji: "🔧", label: "Sanierungskosten-Check", sub: "BAFA-Förderung eingerechnet" },
-                    ].map(({ emoji, label, sub }) => (
+                      { Icon: House,    label: "Immobilien-Kaufcheck",  sub: "Kaufnebenkosten + Finanzierung" },
+                      { Icon: CarFront, label: "Gebrauchtwagen-Check",  sub: "Betriebskosten 5 Jahre" },
+                      { Icon: Sun,      label: "Photovoltaik-Check",    sub: "Ertrag & Amortisation" },
+                      { Icon: Hammer,   label: "Sanierungskosten-Check", sub: "BAFA-Förderung eingerechnet" },
+                    ].map(({ Icon, label, sub }) => (
                       <div
                         key={label}
                         className="rounded-2xl bg-white p-4 shadow-sm border border-[#E4E8E1]"
                       >
-                        <div className="mb-2.5 flex h-9 w-9 items-center justify-center rounded-xl bg-[#DCFCE7] text-lg">
-                          {emoji}
+                        <div className="mb-2.5 flex h-9 w-9 items-center justify-center rounded-xl bg-[#F0F5ED]">
+                          <Icon className="h-4 w-4 text-[#14532D]" strokeWidth={1.75} aria-hidden="true" />
                         </div>
                         <p className="text-xs font-semibold text-[#111827] leading-snug">{label}</p>
                         <p className="mt-0.5 text-[10px] text-[#647067]">{sub}</p>
@@ -363,13 +365,15 @@ export default function HomePage() {
               </div>
               <div className="space-y-4">
                 {[
-                  { emoji: "🧮", title: "Kaufnebenkosten je Bundesland", desc: "Exakte Grunderwerbsteuer, Notar & Grundbuch, Makler – aus amtlichen Steuersätzen berechnet." },
-                  { emoji: "📊", title: "3 Finanzierungsszenarien", desc: "Annuitätendarlehen bei 3,5 %, 4,0 % und 4,5 % – Monatsrate und Gesamtzinsen auf 30 Jahre." },
-                  { emoji: "🤖", title: "KI-Einschätzung", desc: "KI identifiziert Risiken, formuliert Fragen für die Besichtigung und benennt fehlende Informationen." },
-                  { emoji: "📋", title: "Transparente Quellen", desc: "Jede Zahl mit Quellenangabe: Gesetz, amtlicher Steuersatz oder mathematische Formel." },
-                ].map(({ emoji, title, desc }) => (
+                  { Icon: Calculator,   title: "Kaufnebenkosten je Bundesland", desc: "Exakte Grunderwerbsteuer, Notar & Grundbuch, Makler – aus amtlichen Steuersätzen berechnet." },
+                  { Icon: BarChart2,    title: "3 Finanzierungsszenarien", desc: "Annuitätendarlehen bei 3,5 %, 4,0 % und 4,5 % – Monatsrate und Gesamtzinsen auf 30 Jahre." },
+                  { Icon: BrainCircuit, title: "KI-Einschätzung", desc: "KI identifiziert Risiken, formuliert Fragen für die Besichtigung und benennt fehlende Informationen." },
+                  { Icon: BookOpen,     title: "Transparente Quellen", desc: "Jede Zahl mit Quellenangabe: Gesetz, amtlicher Steuersatz oder mathematische Formel." },
+                ].map(({ Icon, title, desc }) => (
                   <div key={title} className="flex gap-4 p-4 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)]">
-                    <span className="text-2xl shrink-0">{emoji}</span>
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F0F5ED]">
+                      <Icon className="h-4 w-4 text-[#14532D]" strokeWidth={1.75} aria-hidden="true" />
+                    </div>
                     <div>
                       <p className="font-semibold text-sm text-[var(--foreground)] mb-0.5">{title}</p>
                       <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{desc}</p>
