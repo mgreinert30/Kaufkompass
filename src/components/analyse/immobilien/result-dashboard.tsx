@@ -63,7 +63,7 @@ function KpiCard({ label, value, sub }: { label: string; value: string; sub?: st
 function SeverityIcon({ s }: { s: string }) {
   if (s === "hoch") return <AlertTriangle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />;
   if (s === "mittel") return <AlertCircle className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />;
-  return <Info className="h-4 w-4 text-blue-500 shrink-0 mt-0.5" />;
+  return <Info className="h-4 w-4 text-[#16A34A] shrink-0 mt-0.5" />;
 }
 
 export function ImmobilienResultDashboard({ result }: { result: AnalyseResult }) {
@@ -85,18 +85,18 @@ export function ImmobilienResultDashboard({ result }: { result: AnalyseResult })
 
       {/* KI-Zusammenfassung */}
       {ki_analyse && (
-        <div className="rounded-lg border border-blue-200 bg-blue-50 dark:bg-blue-900/20 p-4">
+        <div className="rounded-lg border border-[#BBF7D0] bg-[#F0FDF4] dark:bg-[#14532D]/20 p-4">
           <div className="flex items-start gap-2">
-            <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
+            <CheckCircle2 className="h-4 w-4 text-[#16A34A] shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">KI-Einschätzung</p>
-              <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
+              <p className="text-sm font-semibold text-[#14532D] dark:text-[#4ade80] mb-1">KI-Einschätzung</p>
+              <p className="text-sm text-[#15803d] dark:text-[#86efac] leading-relaxed">
                 {ki_analyse.zusammenfassung}
               </p>
               {ki_analyse.bewertung.einschaetzung && ki_analyse.bewertung.einschaetzung !== "nicht beurteilbar" && (
                 <div className="mt-2 flex items-center gap-2">
-                  <span className="text-xs font-medium text-blue-900 dark:text-blue-100">Preis:</span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100">
+                  <span className="text-xs font-medium text-[#14532D] dark:text-[#4ade80]">Preis:</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#DCFCE7] dark:bg-[#14532D] text-[#14532D] dark:text-[#4ade80]">
                     {ki_analyse.bewertung.einschaetzung}
                   </span>
                 </div>
@@ -164,10 +164,10 @@ export function ImmobilienResultDashboard({ result }: { result: AnalyseResult })
             </thead>
             <tbody>
               {c.finanzierung.szenarien.map((s, i) => (
-                <tr key={i} className={`border-b border-[var(--border)] last:border-0 ${i === 1 ? "bg-blue-50 dark:bg-blue-900/20" : ""}`}>
+                <tr key={i} className={`border-b border-[var(--border)] last:border-0 ${i === 1 ? "bg-[#F0FDF4] dark:bg-[#14532D]/20" : ""}`}>
                   <td className="py-2.5 text-[var(--foreground)]">
                     {s.bezeichnung}
-                    {i === 1 && <span className="ml-2 text-xs text-blue-600">(Basis)</span>}
+                    {i === 1 && <span className="ml-2 text-xs text-[#16A34A]">(Basis)</span>}
                   </td>
                   <td className="py-2.5 font-mono font-semibold text-right">{fmtEuro(s.monatlicheRate)}</td>
                   <td className="py-2.5 font-mono text-right text-[var(--muted-foreground)]">{fmtEuro(s.gesamtZinsen)}</td>
@@ -218,7 +218,7 @@ export function ImmobilienResultDashboard({ result }: { result: AnalyseResult })
           <ul className="space-y-2">
             {ki_analyse.fragenfuerBesichtigung.map((f, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-[var(--foreground)]">
-                <span className="text-blue-600 font-semibold shrink-0">{i + 1}.</span>
+                <span className="text-[#16A34A] font-semibold shrink-0">{i + 1}.</span>
                 {f}
               </li>
             ))}
@@ -260,7 +260,7 @@ export function ImmobilienResultDashboard({ result }: { result: AnalyseResult })
               {" · "}{q.datenstand}
               {q.url && (
                 <a href={q.url} target="_blank" rel="noopener noreferrer"
-                   className="ml-1 inline-flex items-center gap-0.5 text-blue-600 hover:underline">
+                   className="ml-1 inline-flex items-center gap-0.5 text-[#16A34A] hover:underline">
                   <ExternalLink className="h-3 w-3" />
                 </a>
               )}

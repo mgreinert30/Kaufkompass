@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "/kategorien",       label: "Kategorien" },
+  { href: "/kategorien",         label: "Alle Tools" },
   { href: "/so-funktioniert-es", label: "So funktioniert's" },
-  { href: "/preise",           label: "Preise" },
+  { href: "/quellen",            label: "Quellen" },
+  { href: "/ueber-uns",          label: "Über uns" },
 ] as const;
 
 interface NavigationProps {
@@ -29,10 +30,10 @@ function Navigation({ className }: NavigationProps) {
             key={href}
             href={href}
             className={cn(
-              "rounded-md px-3 py-2 text-sm font-medium transition-colors no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+              "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14532D]",
               isActive
-                ? "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-                : "text-[var(--foreground)] hover:bg-[var(--muted)] hover:text-blue-700"
+                ? "bg-[#DCFCE7] text-[#14532D] dark:bg-[#14532D]/30 dark:text-[#4ade80]"
+                : "text-[var(--foreground)] hover:bg-[var(--muted)] hover:text-[#14532D]"
             )}
             aria-current={isActive ? "page" : undefined}
           >
@@ -41,12 +42,9 @@ function Navigation({ className }: NavigationProps) {
         );
       })}
 
-      <div className="ml-3 flex items-center gap-2">
-        <Button variant="outline" size="sm" asChild>
-          <Link href="/login">Anmelden</Link>
-        </Button>
+      <div className="ml-4 flex items-center gap-2">
         <Button variant="primary" size="sm" asChild>
-          <Link href="/kategorien">Jetzt prüfen</Link>
+          <Link href="/kategorien">Jetzt prüfen →</Link>
         </Button>
       </div>
     </nav>

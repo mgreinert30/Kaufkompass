@@ -95,7 +95,7 @@ export default function ImmobilienKaufcheckPage() {
             </nav>
 
             <div className="flex items-start gap-4 mb-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-700 text-white shadow">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#14532D] text-white shadow">
                 <House className="h-6 w-6" />
               </div>
               <div>
@@ -166,7 +166,7 @@ export default function ImmobilienKaufcheckPage() {
                         <h2 className="font-semibold text-[var(--foreground)]">Analyseergebnis</h2>
                         <button
                           onClick={() => setState("form")}
-                          className="text-xs text-blue-600 hover:text-blue-700 underline underline-offset-2"
+                          className="text-xs text-[#16A34A] hover:text-[#14532D] underline underline-offset-2"
                         >
                           Neue Analyse
                         </button>
@@ -190,7 +190,7 @@ export default function ImmobilienKaufcheckPage() {
                       "Optional: Besonderheiten aus dem Exposé",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <span className="text-blue-600 font-bold shrink-0">·</span>
+                        <span className="text-[#16A34A] font-bold shrink-0">·</span>
                         {item}
                       </li>
                     ))}

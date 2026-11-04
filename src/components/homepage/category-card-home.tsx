@@ -28,12 +28,12 @@ export function CategoryCardHome({ category, className }: CategoryCardHomeProps)
       href={`/kategorien/${category.slug}`}
       className={cn(
         "group card-base card-hover block p-5 no-underline",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14532D] focus-visible:ring-offset-2",
         className
       )}
     >
       <div className="mb-4 flex items-start justify-between gap-2">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 transition-colors group-hover:bg-blue-100">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#DCFCE7] text-[#14532D] dark:bg-[#14532D]/30 dark:text-[#4ade80] transition-colors group-hover:bg-[#BBF7D0]">
           <DynamicIcon name={category.icon} className="h-5 w-5" />
         </div>
         <StatusBadge variant={badgeVariant}>
@@ -41,7 +41,7 @@ export function CategoryCardHome({ category, className }: CategoryCardHomeProps)
         </StatusBadge>
       </div>
 
-      <h3 className="mb-1 text-sm font-semibold text-[var(--foreground)] group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors leading-snug">
+      <h3 className="mb-1 text-sm font-semibold text-[var(--foreground)] group-hover:text-[#14532D] dark:group-hover:text-[#4ade80] transition-colors leading-snug">
         {category.title}
       </h3>
       <p className="text-xs leading-relaxed text-[var(--muted-foreground)] line-clamp-2">
@@ -50,7 +50,7 @@ export function CategoryCardHome({ category, className }: CategoryCardHomeProps)
 
       <div className="mt-3 flex items-center justify-between">
         <span className="text-xs text-[var(--muted-foreground)]">{category.familyLabel}</span>
-        <ArrowRight className="h-3.5 w-3.5 text-[var(--muted-foreground)] transition-transform group-hover:translate-x-1 group-hover:text-blue-600" aria-hidden="true" />
+        <ArrowRight className="h-3.5 w-3.5 text-[var(--muted-foreground)] transition-transform group-hover:translate-x-1 group-hover:text-[#16A34A]" aria-hidden="true" />
       </div>
     </Link>
   );

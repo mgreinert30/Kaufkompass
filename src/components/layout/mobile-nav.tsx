@@ -35,7 +35,7 @@ function MobileNav({ className }: MobileNavProps) {
     <div className={className}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex h-9 w-9 items-center justify-center rounded-md text-[var(--foreground)] hover:bg-[var(--muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="flex h-9 w-9 items-center justify-center rounded-md text-[var(--foreground)] hover:bg-[var(--muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14532D]"
         aria-label={open ? "Menü schließen" : "Menü öffnen"}
         aria-expanded={open}
         aria-controls="mobile-menu"
@@ -71,9 +71,9 @@ function MobileNav({ className }: MobileNavProps) {
                     <Link
                       href={href}
                       className={cn(
-                        "block rounded-md px-4 py-3 text-base font-medium transition-colors no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+                        "block rounded-md px-4 py-3 text-base font-medium transition-colors no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14532D]",
                         isActive
-                          ? "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                          ? "bg-[#DCFCE7] text-[#14532D] dark:bg-[#14532D]/30 dark:text-[#4ade80]"
                           : "text-[var(--foreground)] hover:bg-[var(--muted)]"
                       )}
                       aria-current={isActive ? "page" : undefined}
@@ -85,12 +85,9 @@ function MobileNav({ className }: MobileNavProps) {
               })}
             </ul>
 
-            <div className="mt-5 flex flex-col gap-2.5">
-              <Button variant="outline" size="lg" asChild className="w-full">
-                <Link href="/login">Anmelden</Link>
-              </Button>
+            <div className="mt-5">
               <Button variant="primary" size="lg" asChild className="w-full">
-                <Link href="/kategorien">Jetzt prüfen</Link>
+                <Link href="/kategorien">Jetzt prüfen →</Link>
               </Button>
             </div>
           </nav>

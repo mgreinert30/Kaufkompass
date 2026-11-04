@@ -34,12 +34,12 @@ function Footer() {
           <div className="space-y-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-base font-bold text-[var(--foreground)] no-underline hover:opacity-80 transition-opacity"
+              className="inline-flex items-center gap-2 text-base font-bold text-[var(--foreground)] no-underline hover:opacity-80 transition-opacity gap-1.5"
               aria-label={`${BRANDING.name} – Startseite`}
             >
               <span>
                 {BRANDING.logo.text}
-                <span className="text-blue-600 ml-0.5">{BRANDING.logo.highlight}</span>
+                <span className="text-[#16A34A] ml-0.5">{BRANDING.logo.highlight}</span>
               </span>
             </Link>
 
@@ -52,7 +52,7 @@ function Footer() {
             <p className="text-xs text-[var(--muted-foreground)]">
               <a
                 href={`mailto:${BRANDING.email}`}
-                className="hover:text-blue-600 transition-colors"
+                className="hover:text-[#16A34A] transition-colors"
               >
                 {BRANDING.email}
               </a>
@@ -70,7 +70,7 @@ function Footer() {
                   <li key={href}>
                     <Link
                       href={href}
-                      className="text-sm text-[var(--muted-foreground)] no-underline hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+                      className="text-sm text-[var(--muted-foreground)] no-underline hover:text-[#16A34A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14532D] rounded-sm"
                     >
                       {label}
                     </Link>
