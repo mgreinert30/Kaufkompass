@@ -17,6 +17,7 @@ const IMPLEMENTED_TOOLS: Record<string, string> = {
   "waermepumpen-check":      "/analyse/waermepumpen-check",
   "kuechen-kaufcheck":       "/analyse/kuechen-kaufcheck",
   "fenster-dach-check":      "/analyse/fenster-dach-check",
+  "bad-renovierung-check":   "/analyse/bad-renovierung-check",
 };
 
 export async function generateStaticParams() {

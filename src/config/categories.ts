@@ -126,7 +126,7 @@ export const CATEGORIES: CategoryConfig[] = [
     icon: "Bath",
     family: "A",
     familyLabel: "Immobilien, Wohnen & Energie",
-    status: "planned",
+    status: "available",
     priority: 7,
     allowedDocTypes: ["pdf", "jpg", "png"],
     inputFields: ["flaeche", "ausstattung", "angebot"],
