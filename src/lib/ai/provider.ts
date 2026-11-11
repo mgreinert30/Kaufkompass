@@ -31,7 +31,7 @@ export async function callAI(options: AIRequestOptions): Promise<AIResponse> {
   const gemini = getGemini();
   if (gemini) {
     const model = gemini.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-3.8-flash",
       systemInstruction: options.systemPrompt,
     });
     const result = await model.generateContent(options.userMessage);
