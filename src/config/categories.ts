@@ -112,7 +112,7 @@ export const CATEGORIES: CategoryConfig[] = [
     icon: "Building2",
     family: "A",
     familyLabel: "Immobilien, Wohnen & Energie",
-    status: "planned",
+    status: "available",
     priority: 6,
     allowedDocTypes: ["pdf", "jpg", "png"],
     inputFields: ["massnahme", "anzahl", "material", "angebot"],

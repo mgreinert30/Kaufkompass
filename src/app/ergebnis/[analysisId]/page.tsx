@@ -19,6 +19,7 @@ import { PhotovoltaikResultDashboard } from "@/components/analyse/photovoltaik/r
 import { SanierungResultDashboard } from "@/components/analyse/sanierung/result-dashboard";
 import { WaermepumpeResultDashboard } from "@/components/analyse/waermepumpe/result-dashboard";
 import { KuecheResultDashboard } from "@/components/analyse/kueche/result-dashboard";
+import { FensterDachResultDashboard } from "@/components/analyse/fenster-dach/result-dashboard";
 
 type LoadState = "loading" | "found" | "expired" | "error";
 
@@ -229,6 +230,9 @@ function ToolDashboard({ analyse }: { analyse: GespeicherteAnalyse }) {
     case "kuechen-kaufcheck":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return <KuecheResultDashboard result={result as any} />;
+    case "fenster-dach-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <FensterDachResultDashboard result={result as any} />;
     default:
       return <UnbekanntesTool analyse={analyse} />;
   }
