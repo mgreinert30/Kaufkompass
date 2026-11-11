@@ -1,0 +1,6 @@
+import type { HaushaltsgeraeteInput, HaushaltsgeraeteErgebnis } from "@/lib/calculations/haushaltsgeraete";
+export const HAUSHALTSGERAETE_SYSTEM_PROMPT = `Du bist ein unabhängiger Haushaltsgeräte-Experte. Antworte AUSSCHLIESSLICH mit validem JSON:
+{"angebotsBewertung":{"fazit":"string","hauptrisiken":["string"],"vorteile":["string"]},"qualitaetsCheck":{"markenHinweis":"string","langlebigkeit":"string","wartbarkeit":"string"},"empfehlung":{"action":"kaufen"|"verhandeln"|"alternativen_pruefen","begruendung":"string","verhandlungsTipp":"string"},"fragenVorKauf":["string"],"alternativenHinweis":"string"}`;
+export function buildHaushaltsgeraeteUserMessage(i: HaushaltsgeraeteInput, e: HaushaltsgeraeteErgebnis): string {
+  return [`Gerät: ${e.typLabel}`, `Energieklasse: ${i.energieKlasse}`, `Preis: ${i.angebotspreis.toLocaleString("de-DE")} €`, `Bewertung: ${e.angebotsBewertung.einschaetzung}`, `Betriebskosten 10 Jahre (Strom): ${e.betriebskosten10Jahre.strom.toLocaleString("de-DE")} €`, `TCO 10 Jahre: ${e.betriebskosten10Jahre.gesamt.toLocaleString("de-DE")} €`, e.energieklasseHinweis, i.hersteller ? `Hersteller: ${i.hersteller}` : "", i.garantieJahre ? `Garantie: ${i.garantieJahre} Jahre` : "", i.zusatzAngaben ? `Zusatz: ${i.zusatzAngaben}` : ""].filter(Boolean).join("\n");
+}

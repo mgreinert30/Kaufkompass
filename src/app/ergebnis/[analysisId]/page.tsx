@@ -24,6 +24,15 @@ import { BadRenovierungResultDashboard } from "@/components/analyse/bad-renovier
 import { MoebelResultDashboard } from "@/components/analyse/moebel/result-dashboard";
 import { AutoreparaturResultDashboard } from "@/components/analyse/autoreparatur/result-dashboard";
 import { LeasingResultDashboard } from "@/components/analyse/leasing/result-dashboard";
+import { ElektroautoResultDashboard } from "@/components/analyse/elektroauto/result-dashboard";
+import { WohnmobilResultDashboard } from "@/components/analyse/wohnmobil/result-dashboard";
+import { EBikeResultDashboard } from "@/components/analyse/ebike/result-dashboard";
+import { LaptopResultDashboard } from "@/components/analyse/laptop/result-dashboard";
+import { SmartphoneResultDashboard } from "@/components/analyse/smartphone/result-dashboard";
+import { HaushaltsgeraeteResultDashboard } from "@/components/analyse/haushaltsgeraete/result-dashboard";
+import { GebrauchtwarenResultDashboard } from "@/components/analyse/gebrauchtwaren/result-dashboard";
+import { GenericKiResultDashboard } from "@/components/analyse/generic/ki-result-dashboard";
+import { BeratungsResultDashboard } from "@/components/analyse/generic/beratungs-result-dashboard";
 
 type LoadState = "loading" | "found" | "expired" | "error";
 
@@ -249,6 +258,41 @@ function ToolDashboard({ analyse }: { analyse: GespeicherteAnalyse }) {
     case "auto-leasing-check":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return <LeasingResultDashboard result={result as any} />;
+    case "elektroauto-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <ElektroautoResultDashboard result={result as any} />;
+    case "wohnmobil-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <WohnmobilResultDashboard result={result as any} />;
+    case "ebike-kaufcheck":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <EBikeResultDashboard result={result as any} />;
+    case "laptop-pc-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <LaptopResultDashboard result={result as any} />;
+    case "smartphone-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <SmartphoneResultDashboard result={result as any} />;
+    case "haushaltsgeraete-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <HaushaltsgeraeteResultDashboard result={result as any} />;
+    case "matratzen-check":
+    case "kinderwagen-check":
+      return <GenericKiResultDashboard result={result as { calculations: Record<string, unknown>; ki_analyse: Record<string, unknown> | null; ki_verfuegbar: boolean }} />;
+    case "gebrauchtwaren-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <GebrauchtwarenResultDashboard result={result as any} />;
+    case "versicherung-check":
+    case "energie-tarif-check":
+    case "internet-mobil-check":
+    case "umzug-check":
+    case "hochzeit-check":
+    case "reise-hotel-check":
+    case "weiterbildung-check":
+    case "zahnarzt-check":
+    case "bestattung-check":
+    case "tierarzt-check":
+      return <BeratungsResultDashboard result={{ ki_analyse: analyse.ki_analyse, ki_verfuegbar: analyse.ki_verfuegbar, eingabe: analyse.berechnungen as Record<string, unknown> }} />;
     default:
       return <UnbekanntesTool analyse={analyse} />;
   }

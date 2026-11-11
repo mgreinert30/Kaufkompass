@@ -1,0 +1,6 @@
+import type { GebrauchtwarenInput, GebrauchtwarenErgebnis } from "@/lib/calculations/gebrauchtwaren";
+export const GEBRAUCHTWAREN_SYSTEM_PROMPT = `Du bist ein unabhängiger Verbraucherschutzexperte für Gebrauchtwaren. Antworte AUSSCHLIESSLICH mit validem JSON:
+{"angebotsBewertung":{"fazit":"string","hauptrisiken":["string"],"positivePunkte":["string"]},"kaufAbwicklung":{"sicherheitstipps":["string"],"zahlungsHinweis":"string","betrugsWarnsignale":["string"]},"empfehlung":{"action":"kaufen"|"verhandeln"|"ablehnen","begruendung":"string","verhandlungsTipp":"string"},"fragenVorKauf":["string"]}`;
+export function buildGebrauchtwarenUserMessage(i: GebrauchtwarenInput, e: GebrauchtwarenErgebnis): string {
+  return [`Kategorie: ${e.kategorieLabel}`, `Zustand: ${e.zustandLabel}`, `Angebotspreis: ${i.angebotspreis.toLocaleString("de-DE")} €`, i.neupreis ? `Neupreis: ${i.neupreis.toLocaleString("de-DE")} €` : "", e.empfohlenerPreis ? `Empfohlener Preisbereich: ${e.empfohlenerPreis.min}–${e.empfohlenerPreis.max} €` : "", e.angebotsBewertung ? `Bewertung: ${e.angebotsBewertung.einschaetzung}` : "", i.plattform ? `Plattform: ${i.plattform}` : "", i.hersteller ? `Hersteller: ${i.hersteller}` : "", i.baujahr ? `Baujahr: ${i.baujahr}` : "", `Risikohinweise: ${e.risikoHinweise.join("; ")}`, i.zusatzAngaben ? `Zusatz: ${i.zusatzAngaben}` : ""].filter(Boolean).join("\n");
+}

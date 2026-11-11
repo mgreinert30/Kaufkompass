@@ -10,8 +10,8 @@ interface Props {
 
 // Mapping: Welche Slugs haben eine vollständige Implementierung?
 const IMPLEMENTED_TOOLS: Record<string, string> = {
+  // Familie A – Immobilien & Wohnen
   "immobilien-kaufcheck":    "/analyse/immobilien-kaufcheck",
-  "gebrauchtwagen-check":    "/analyse/gebrauchtwagen-check",
   "photovoltaik-check":      "/analyse/photovoltaik-check",
   "sanierungskosten-check":  "/analyse/sanierungskosten-check",
   "waermepumpen-check":      "/analyse/waermepumpen-check",
@@ -19,8 +19,32 @@ const IMPLEMENTED_TOOLS: Record<string, string> = {
   "fenster-dach-check":      "/analyse/fenster-dach-check",
   "bad-renovierung-check":   "/analyse/bad-renovierung-check",
   "moebel-kaufcheck":        "/analyse/moebel-kaufcheck",
+  // Familie B – Mobilität & Fahrzeuge
+  "gebrauchtwagen-check":    "/analyse/gebrauchtwagen-check",
   "autoreparatur-check":     "/analyse/autoreparatur-check",
   "auto-leasing-check":      "/analyse/auto-leasing-check",
+  "elektroauto-check":       "/analyse/elektroauto-check",
+  "wohnmobil-check":         "/analyse/wohnmobil-check",
+  "ebike-kaufcheck":         "/analyse/ebike-kaufcheck",
+  // Familie C – Technik & Elektronik
+  "laptop-pc-check":         "/analyse/laptop-pc-check",
+  "smartphone-check":        "/analyse/smartphone-check",
+  "haushaltsgeraete-check":  "/analyse/haushaltsgeraete-check",
+  // Familie C – Alltagskäufe
+  "matratzen-check":         "/analyse/matratzen-check",
+  "kinderwagen-check":       "/analyse/kinderwagen-check",
+  "gebrauchtwaren-check":    "/analyse/gebrauchtwaren-check",
+  // Familie D – Dienstleistungen & Services
+  "versicherung-check":      "/analyse/versicherung-check",
+  "energie-tarif-check":     "/analyse/energie-tarif-check",
+  "internet-mobil-check":    "/analyse/internet-mobil-check",
+  "umzug-check":             "/analyse/umzug-check",
+  "hochzeit-check":          "/analyse/hochzeit-check",
+  "reise-hotel-check":       "/analyse/reise-hotel-check",
+  "weiterbildung-check":     "/analyse/weiterbildung-check",
+  "zahnarzt-check":          "/analyse/zahnarzt-check",
+  "bestattung-check":        "/analyse/bestattung-check",
+  "tierarzt-check":          "/analyse/tierarzt-check",
 };
 
 export async function generateStaticParams() {

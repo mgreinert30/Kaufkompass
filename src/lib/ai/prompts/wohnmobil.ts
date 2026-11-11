@@ -1,0 +1,6 @@
+import type { WohnmobilInput, WohnmobilErgebnis } from "@/lib/calculations/wohnmobil";
+export const WOHNMOBIL_SYSTEM_PROMPT = `Du bist ein unabhängiger Wohnmobil-Experte. Antworte AUSSCHLIESSLICH mit validem JSON:
+{"angebotsBewertung":{"fazit":"string","hauptrisiken":["string"],"positivePunkte":["string"]},"technischePruefung":{"pflichtpruefpunkte":["string"],"typischeSchaeden":["string"]},"empfehlung":{"action":"kaufen"|"verhandeln"|"gutachten"|"ablehnen","begruendung":"string","verhandlungsTipp":"string"},"fragenVorKauf":["string"],"alternativenHinweis":"string"}`;
+export function buildWohnmobilUserMessage(i: WohnmobilInput, e: WohnmobilErgebnis): string {
+  return [`Typ: ${e.typLabel}`, `Kaufpreis: ${i.kaufpreis.toLocaleString("de-DE")} €`, `Baujahr: ${i.baujahr} (${e.alterInJahren} Jahre alt)`, i.kilometerstand ? `KM-Stand: ${i.kilometerstand.toLocaleString("de-DE")} km` : "", `Bewertung: ${e.werteinschaetzung.einschaetzung}`, `Jährliche Kosten (geschätzt): ${e.jaehrlicheKosten.gesamt.toLocaleString("de-DE")} €`, i.mitGarantie ? "Garantie: Ja" : "Garantie: Nein", e.risikoHinweise.length > 0 ? `Risikohinweise: ${e.risikoHinweise.join("; ")}` : "", i.zusatzAngaben ? `Zusatz: ${i.zusatzAngaben}` : ""].filter(Boolean).join("\n");
+}

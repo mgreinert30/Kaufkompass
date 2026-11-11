@@ -1,0 +1,6 @@
+import type { LaptopInput, LaptopErgebnis } from "@/lib/calculations/laptop";
+export const LAPTOP_SYSTEM_PROMPT = `Du bist ein unabhängiger IT-Experte. Antworte AUSSCHLIESSLICH mit validem JSON:
+{"angebotsBewertung":{"fazit":"string","hauptrisiken":["string"],"staerken":["string"]},"spezifikationsCheck":{"prozessorEinschaetzung":"string","alternativen":["string"],"upgradeMoeglichkeiten":"string"},"empfehlung":{"action":"kaufen"|"verhandeln"|"alternativen_pruefen","begruendung":"string","verhandlungsTipp":"string"},"fragenVorKauf":["string"],"alternativenHinweis":"string"}`;
+export function buildLaptopUserMessage(i: LaptopInput, e: LaptopErgebnis): string {
+  return [`Typ: ${e.typLabel}`, `Verwendungszweck: ${e.zweckLabel}`, `Preis: ${i.angebotspreis.toLocaleString("de-DE")} €`, `Bewertung: ${e.angebotsBewertung.einschaetzung}`, `Ref-Bereich: ${e.referenzPreis.min}–${e.referenzPreis.max} €`, i.prozessor ? `Prozessor: ${i.prozessor}` : "", i.ramGb ? `RAM: ${i.ramGb} GB` : "", i.speicherGb ? `Speicher: ${i.speicherGb} GB` : "", i.betriebssystem ? `OS: ${i.betriebssystem}` : "", i.refurbished ? "Refurbished: Ja" : "", e.anforderungsCheck.fehlend.length > 0 ? `Anforderungslücken: ${e.anforderungsCheck.fehlend.join("; ")}` : "", i.zusatzAngaben ? `Zusatz: ${i.zusatzAngaben}` : ""].filter(Boolean).join("\n");
+}

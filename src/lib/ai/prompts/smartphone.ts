@@ -1,0 +1,6 @@
+import type { SmartphoneInput, SmartphoneErgebnis } from "@/lib/calculations/smartphone";
+export const SMARTPHONE_SYSTEM_PROMPT = `Du bist ein unabhängiger Smartphone-Experte. Antworte AUSSCHLIESSLICH mit validem JSON:
+{"angebotsBewertung":{"fazit":"string","hauptrisiken":["string"],"vorteile":["string"]},"technikCheck":{"updateSupport":"string","kameraEinschaetzung":"string","akkuHinweis":"string"},"empfehlung":{"action":"kaufen"|"verhandeln"|"alternativen_pruefen","begruendung":"string","verhandlungsTipp":"string"},"fragenVorKauf":["string"],"alternativenHinweis":"string"}`;
+export function buildSmartphoneUserMessage(i: SmartphoneInput, e: SmartphoneErgebnis): string {
+  return [`Segment: ${e.segmentLabel}`, `Preis: ${i.angebotspreis.toLocaleString("de-DE")} €`, i.hersteller ? `Hersteller: ${i.hersteller}` : "", i.modell ? `Modell: ${i.modell}` : "", i.erscheinungsjahr ? `Erscheinungsjahr: ${i.erscheinungsjahr}` : "", `Bewertung: ${e.angebotsBewertung.einschaetzung}`, e.alterHinweis ?? "", i.speicherGb ? `Speicher: ${i.speicherGb} GB` : "", i.akkuMah ? `Akku: ${i.akkuMah} mAh` : "", e.vertragKosten ? `Gesamtkosten mit Vertrag: ${e.vertragKosten.gesamtkosten.toLocaleString("de-DE")} €` : "", i.zusatzAngaben ? `Zusatz: ${i.zusatzAngaben}` : ""].filter(Boolean).join("\n");
+}
