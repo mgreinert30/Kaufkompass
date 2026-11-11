@@ -1,119 +1,88 @@
-# TASKS.md – KaufKompass AI
-Legende: `[x]` Fertig | `[~]` In Bearbeitung | `[ ]` Offen | `[!]` Blockiert
+# KaufKompass AI – Implementierungsplan
+
+## Architektur-Status
+
+### ✅ Bereits implementiert
+- Tool 01: Immobilien-Kaufcheck (`/analyse/immobilien-kaufcheck`)
+- Tool 02: Sanierungskosten-Check (`/analyse/sanierungskosten-check`)
+- Tool 03: Wärmepumpen-Check (`/analyse/waermepumpen-check`)
+- Tool 04: Photovoltaik-Check (`/analyse/photovoltaik-check`)
+- Tool 09: Gebrauchtwagen-Kaufcheck (`/analyse/gebrauchtwagen-check`)
+- KI-Provider mit Gemini-Fallback-Chain
+- Zentrales Quellenregister (`src/lib/data-sources/registry.ts`)
+- Deterministische Berechnungen für alle obigen Tools
+
+### 🔄 In Arbeit (diese Session)
+- Result-Seiten-System (`/ergebnis/[analysisId]`)
+- In-Memory Analysis-Store
+- Tool 05: Küchen-Kaufcheck
 
 ---
 
-## PHASE 1 – Design-System ✅ Abgeschlossen
+## Offene Implementierungen (sequenziell)
 
-Alle 18 UI-Komponenten, Header, Footer, Navigation, Design Tokens, Build.
+### Phase 1: Architektur-Upgrade
+- [ ] `src/lib/storage/analysis-store.ts` – Server-seitiger In-Memory-Store
+- [ ] `src/app/ergebnis/[analysisId]/page.tsx` – Universelle Ergebnisseite
+- [ ] `src/app/api/ergebnis/[analysisId]/route.ts` – GET-API für Ergebnisse
+- [ ] Bestehende Tool-Routen auf analysisId-Rückgabe umstellen
+- [ ] Bestehende Tool-Pages auf Redirect umstellen
 
-## PHASE 2 – Website-Struktur ✅ Abgeschlossen (2026-11-04)
+### Phase 2: Familie A – Immobilien, Wohnen & Energie
+- [ ] Tool 05: Küchen-Kaufcheck
+  - [ ] `src/lib/calculations/kueche.ts`
+  - [ ] `src/lib/ai/prompts/kueche.ts`
+  - [ ] `src/app/api/analyse/kuechen-kaufcheck/route.ts`
+  - [ ] `src/components/analyse/kueche/input-form.tsx`
+  - [ ] `src/components/analyse/kueche/result-dashboard.tsx`
+  - [ ] `src/app/analyse/kuechen-kaufcheck/page.tsx`
+- [ ] Tool 06: Fenster- und Dachcheck
+- [ ] Tool 07: Badezimmer-Renovierungscheck
+- [ ] Tool 08: Möbel-Kaufcheck
 
-44 statische Seiten deployed auf https://kaufkompass-ai.vercel.app
+### Phase 3: Familie B – Fahrzeuge & Mobilität
+- [ ] Tool 10: Autoreparatur-Check
+- [ ] Tool 11: Auto-Leasingcheck
+- [ ] Tool 12: Elektroauto-Kostencheck
+- [ ] Tool 13: Wohnmobil-Check
+- [ ] Tool 14: E-Bike-Kaufcheck
 
----
+### Phase 4: Familie C – Technik & Alltag
+- [ ] Tool 15: Laptop- und PC-Check
+- [ ] Tool 16: Smartphone-Check
+- [ ] Tool 17: Haushaltsgeräte-Check
+- [ ] Tool 18: Matratzen-Kaufcheck
+- [ ] Tool 19: Baby- und Kinderwagencheck
+- [ ] Tool 20: Gebrauchtwaren-Check
 
-## PHASE 3 – KI-Infrastruktur und Tool 01
-
-### 3.1 Infrastruktur ✅ Abgeschlossen (2026-11-04)
-- [x] @anthropic-ai/sdk installiert
-- [x] src/lib/ai/provider.ts – AI Provider Abstraktion
-- [x] src/lib/ai/types.ts – Typen
-- [x] src/lib/calculations/immobilien.ts – Deterministische Berechnungen
-- [x] src/lib/data-sources/registry.ts – Quellenregister
-- [x] src/types/analyse.ts – Gemeinsame Typen
-- [x] docs/CURRENT_STATE.md, AI_ARCHITECTURE.md, DATA_SOURCES.md
-- [x] .env.example
-
-### 3.2 Tool 01 – Immobilien-Kaufcheck [~] In Bearbeitung
-- [x] Spezialisierter KI-Prompt (lib/ai/prompts/immobilien.ts)
-- [x] Berechnungsengine: Kaufnebenkosten, Finanzierungsszenarien, Preis/m²
-- [x] API-Route: POST /api/analyse/immobilien-kaufcheck
-- [x] Eingabeformular (Bundesland, Typ, Fläche, Baujahr, Preis, EK, Makler)
-- [x] Ergebnis-Dashboard mit KPIs, Tabellen, Risikohinweisen, Quellen
-- [x] Analyseseit /analyse/immobilien-kaufcheck
-- [x] Generischer Router /analyse/[slug]
-- [x] layout.tsx: lang="de", Metadata korrigiert
-- [ ] Build-Test
-- [ ] ANTHROPIC_API_KEY in Vercel konfigurieren
-- [ ] Manueller End-to-End-Test
-
-### 3.3 Build & Deployment
-- [ ] npm run build (lokal)
-- [ ] Git commit + push
-- [ ] vercel --prod
-- [ ] E2E-Test auf Live-URL
-
----
-
-## PHASE 4 – Tool 02: Gebrauchtwagen-Kaufcheck
-
-Reihenfolge gemäß Master-Prompt:
-- [ ] Nutzererklärung und Seitenstruktur (A–H)
-- [ ] Berechnungsengine (Betriebskosten 5 Jahre, Versicherung, TÜV)
-- [ ] Datenbasis: ADAC-Daten prüfen (manuelle Referenz, keine API)
-- [!] Preisvergleich DAT/Schwacke: BLOCKIERT (lizenzpflichtig)
-- [ ] KI-Spezialprompt
-- [ ] API-Route
-- [ ] Dashboard
+### Phase 5: Familie D – Verträge & Dienstleistungen
+- [ ] Tool 21: Versicherungscheck
+- [ ] Tool 22: Strom- und Gastarifcheck
+- [ ] Tool 23: Internet- und Mobilfunkcheck
+- [ ] Tool 24: Umzugskosten-Check
+- [ ] Tool 25: Hochzeitsbudget-Check
+- [ ] Tool 26: Reise- und Hotelcheck
+- [ ] Tool 27: Weiterbildungs-Check
+- [ ] Tool 28: Zahnbehandlungs-Kostencheck
+- [ ] Tool 29: Bestattungskosten-Check
+- [ ] Tool 30: Tierarzt-Kostencheck
 
 ---
 
-## PHASE 5 – Tool 03: Autoreparatur-Check
-- [ ] Berechnungsengine: Positionen auflisten, Summen kontrollieren
-- [ ] KI-Spezialprompt: Positionen erklären, keine unbelegten Diagnosen
-- [ ] API-Route + Dashboard
+## Design-Regeln (unveränderlich)
+- Hintergrund: #F8F7F2 (Cream)
+- Primärfarbe: #14532D (Waldgrün)
+- Akzent: #16A34A
+- Border: #E4E8E1
+- Muted: #647067
+- Fonts: DM Serif Display (Headings) + Inter (Body)
+- Tailwind v4: `@theme inline {}` in globals.css – KEIN tailwind.config.ts
 
----
+## Sicherheitsregeln (unveränderlich)
+- API-Keys ausschließlich in Umgebungsvariablen
+- Niemals API-Keys im Frontend-Code
+- Rate Limiting auf allen API-Routen
+- Input-Validation mit Zod
 
-## PHASE 6 – Tool 04: Sanierungskosten-Check
-- [ ] Destatis-Referenzwerte einpflegen
-- [ ] Berechnungsengine: Positionen, Mengen, Puffer
-- [ ] KI-Spezialprompt
-- [ ] API-Route + Dashboard
-
----
-
-## PHASE 7 – Tool 05: Wärmepumpen-Check
-- [ ] BAFA-Fördersätze einpflegen (Stand angeben)
-- [ ] Betriebskosten-Berechnung (Heizlast, JAZ, Strompreis)
-- [ ] KI-Spezialprompt
-- [ ] API-Route + Dashboard
-
----
-
-## PHASE 8 – Tool 06: Photovoltaik-Check
-- [ ] PVGIS API anbinden (EU Open Data)
-- [ ] Eigenverbrauch/Einspeisung berechnen
-- [ ] Amortisationsrechner
-- [ ] KI-Spezialprompt
-- [ ] API-Route + Dashboard
-
----
-
-## PHASE 9 – Tools 07–30 (je nach Reihenfolge)
-- [ ] Tool 07: Küchen-Kaufcheck
-- [ ] Tool 08–30: Weitere Kategorien sequenziell
-
----
-
-## PHASE 10 – Querschnittsthemen
-- [ ] PDF-Export (react-pdf oder Puppeteer)
-- [ ] Datei-Upload + Textextraktion (pdf-parse)
-- [ ] Rate Limiting (Upstash Redis oder In-Memory)
-- [ ] Logging ohne personenbezogene Daten
-
----
-
-## GEBLOCKTE AUFGABEN
-
-| Aufgabe | Grund | Lösungsweg |
-|---------|-------|------------|
-| Kaufpreisvergleich Immobilien | Keine lizenzfreien Marktdaten | Explizit als "nicht verfügbar" kennzeichnen |
-| DAT/Schwacke Fahrzeugpreise | Lizenzpflichtig | Manuell prüfen oder Partnerschaft |
-| Bodenrichtwerte automatisch | Länderspezifische Zugänge | Nutzer auf Landesportale verweisen |
-| Bilderkennung von Mängeln | KI kann ohne technische Prüfung keine Mängel feststellen | Explizit kommunizieren |
-
----
-
-## Zuletzt aktualisiert: 2026-11-04
+## Git-Regel
+- Nach jedem abgeschlossenen Feature sofort committen und pushen

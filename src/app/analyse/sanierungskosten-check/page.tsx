@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SanierungInputForm } from "@/components/analyse/sanierung/input-form";
@@ -21,6 +22,7 @@ const PRUEFPUNKTE = [
 ];
 
 export default function SanierungskostenCheckPage() {
+  const router = useRouter();
   const [state, setState] = useState<PageState>("form");
   const [result, setResult] = useState<SanierungResult | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -45,6 +47,10 @@ export default function SanierungskostenCheckPage() {
       });
       const data = await res.json();
       if (!res.ok || !data.success) { setErrorMsg(data.error ?? "Fehler"); setState("error"); return; }
+      if (data.analysisId) {
+        router.push(`/ergebnis/${data.analysisId}`);
+        return;
+      }
       setResult(data.result as SanierungResult);
       setState("result");
       setTimeout(() => document.getElementById("analyse-ergebnis")?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);

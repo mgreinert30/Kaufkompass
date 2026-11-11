@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PhotovoltaikInputForm } from "@/components/analyse/photovoltaik/input-form";
@@ -21,6 +22,7 @@ const PRUEFPUNKTE = [
 ];
 
 export default function PhotovoltaikCheckPage() {
+  const router = useRouter();
   const [state, setState] = useState<PageState>("form");
   const [result, setResult] = useState<PhotovoltaikResult | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -49,6 +51,7 @@ export default function PhotovoltaikCheckPage() {
       });
       const data = await res.json();
       if (!res.ok || !data.success) { setErrorMsg(data.error ?? "Fehler"); setState("error"); return; }
+      if (data.analysisId) { router.push(`/ergebnis/${data.analysisId}`); return; }
       setResult(data.result as PhotovoltaikResult);
       setState("result");
       setTimeout(() => document.getElementById("analyse-ergebnis")?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);

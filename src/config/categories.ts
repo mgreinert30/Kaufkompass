@@ -97,7 +97,7 @@ export const CATEGORIES: CategoryConfig[] = [
     icon: "ChefHat",
     family: "A",
     familyLabel: "Immobilien, Wohnen & Energie",
-    status: "demo",
+    status: "available",
     priority: 5,
     isPopular: true,
     allowedDocTypes: ["pdf", "jpg", "png"],

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { callAI, isAIAvailable, extractJSON } from "@/lib/ai/provider";
 import { GEBRAUCHTWAGEN_SYSTEM_PROMPT, buildGebrauchtwagenUserMessage } from "@/lib/ai/prompts/gebrauchtwagen";
 import { berechneGebrauchtwagenBetriebskosten } from "@/lib/calculations/gebrauchtwagen";
+import { saveAnalyse } from "@/lib/storage/analysis-store";
 
 const InputSchema = z.object({
   marke:              z.string().min(1).max(50),
@@ -69,5 +70,14 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ success: true, result: { calculations, ki_analyse, ki_verfuegbar } });
+  const analysisId = saveAnalyse({
+    toolSlug: "gebrauchtwagen-check",
+    toolTitle: "Gebrauchtwagen-Kaufcheck",
+    eingabe: input as Record<string, unknown>,
+    berechnungen: calculations as unknown as Record<string, unknown>,
+    ki_analyse: ki_analyse as Record<string, unknown> | null,
+    ki_verfuegbar,
+  });
+
+  return NextResponse.json({ success: true, analysisId, result: { calculations, ki_analyse, ki_verfuegbar } });
 }

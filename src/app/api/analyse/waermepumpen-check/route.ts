@@ -3,6 +3,7 @@ import { z } from "zod";
 import { callAI, isAIAvailable, extractJSON } from "@/lib/ai/provider";
 import { WAERMEPUMPE_SYSTEM_PROMPT, buildWaermepumpeUserMessage } from "@/lib/ai/prompts/waermepumpe";
 import { berechneWaermepumpe } from "@/lib/calculations/waermepumpe";
+import { saveAnalyse } from "@/lib/storage/analysis-store";
 
 const InputSchema = z.object({
   wohnflaeche:        z.number().positive().max(2000),
@@ -90,5 +91,14 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ success: true, result: { calculations, ki_analyse, ki_verfuegbar } });
+  const analysisId = saveAnalyse({
+    toolSlug: "waermepumpen-check",
+    toolTitle: "Wärmepumpen-Angebotscheck",
+    eingabe: input as Record<string, unknown>,
+    berechnungen: calculations as unknown as Record<string, unknown>,
+    ki_analyse: ki_analyse as Record<string, unknown> | null,
+    ki_verfuegbar,
+  });
+
+  return NextResponse.json({ success: true, analysisId, result: { calculations, ki_analyse, ki_verfuegbar } });
 }

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { callAI, isAIAvailable, extractJSON } from "@/lib/ai/provider";
 import { PHOTOVOLTAIK_SYSTEM_PROMPT, buildPhotovoltaikUserMessage } from "@/lib/ai/prompts/photovoltaik";
 import { berechnePV } from "@/lib/calculations/photovoltaik";
+import { saveAnalyse } from "@/lib/storage/analysis-store";
 
 const InputSchema = z.object({
   leistungKWp:         z.number().positive().max(100),
@@ -78,5 +79,14 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ success: true, result: { calculations, ki_analyse, ki_verfuegbar } });
+  const analysisId = saveAnalyse({
+    toolSlug: "photovoltaik-check",
+    toolTitle: "Photovoltaik-Check",
+    eingabe: input as Record<string, unknown>,
+    berechnungen: calculations as unknown as Record<string, unknown>,
+    ki_analyse: ki_analyse as Record<string, unknown> | null,
+    ki_verfuegbar,
+  });
+
+  return NextResponse.json({ success: true, analysisId, result: { calculations, ki_analyse, ki_verfuegbar } });
 }

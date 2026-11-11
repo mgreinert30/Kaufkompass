@@ -3,6 +3,7 @@ import { z } from "zod";
 import { callAI, isAIAvailable, extractJSON } from "@/lib/ai/provider";
 import { SANIERUNG_SYSTEM_PROMPT, buildSanierungUserMessage } from "@/lib/ai/prompts/sanierung";
 import { berechneSanierung } from "@/lib/calculations/sanierung";
+import { saveAnalyse } from "@/lib/storage/analysis-store";
 
 const InputSchema = z.object({
   massnahme:     z.enum(["fassade", "dach", "keller", "fenster", "heizung", "komplett"]),
@@ -81,5 +82,14 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ success: true, result: { calculations, ki_analyse, ki_verfuegbar } });
+  const analysisId = saveAnalyse({
+    toolSlug: "sanierungskosten-check",
+    toolTitle: "Sanierungskosten-Check",
+    eingabe: input as Record<string, unknown>,
+    berechnungen: calculations as unknown as Record<string, unknown>,
+    ki_analyse: ki_analyse as Record<string, unknown> | null,
+    ki_verfuegbar,
+  });
+
+  return NextResponse.json({ success: true, analysisId, result: { calculations, ki_analyse, ki_verfuegbar } });
 }
