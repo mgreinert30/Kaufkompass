@@ -23,6 +23,7 @@ import { FensterDachResultDashboard } from "@/components/analyse/fenster-dach/re
 import { BadRenovierungResultDashboard } from "@/components/analyse/bad-renovierung/result-dashboard";
 import { MoebelResultDashboard } from "@/components/analyse/moebel/result-dashboard";
 import { AutoreparaturResultDashboard } from "@/components/analyse/autoreparatur/result-dashboard";
+import { LeasingResultDashboard } from "@/components/analyse/leasing/result-dashboard";
 
 type LoadState = "loading" | "found" | "expired" | "error";
 
@@ -245,6 +246,9 @@ function ToolDashboard({ analyse }: { analyse: GespeicherteAnalyse }) {
     case "autoreparatur-check":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return <AutoreparaturResultDashboard result={result as any} />;
+    case "auto-leasing-check":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <LeasingResultDashboard result={result as any} />;
     default:
       return <UnbekanntesTool analyse={analyse} />;
   }

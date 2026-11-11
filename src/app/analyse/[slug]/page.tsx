@@ -20,6 +20,7 @@ const IMPLEMENTED_TOOLS: Record<string, string> = {
   "bad-renovierung-check":   "/analyse/bad-renovierung-check",
   "moebel-kaufcheck":        "/analyse/moebel-kaufcheck",
   "autoreparatur-check":     "/analyse/autoreparatur-check",
+  "auto-leasing-check":      "/analyse/auto-leasing-check",
 };
 
 export async function generateStaticParams() {

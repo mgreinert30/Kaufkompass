@@ -185,7 +185,7 @@ export const CATEGORIES: CategoryConfig[] = [
     icon: "FileContract",
     family: "B",
     familyLabel: "Fahrzeuge & Mobilität",
-    status: "planned",
+    status: "available",
     priority: 11,
     allowedDocTypes: ["pdf"],
     inputFields: ["fahrzeugpreis", "rate", "laufzeit", "km", "anzahlung"],
