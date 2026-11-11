@@ -26,23 +26,40 @@ export function isAIAvailable(): boolean {
   return Boolean(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY);
 }
 
+const GEMINI_MODELS = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.0-flash-lite"];
+
 export async function callAI(options: AIRequestOptions): Promise<AIResponse> {
-  // Primär: Gemini
+  // Primär: Gemini (versucht mehrere Modelle bei 503/404)
   const gemini = getGemini();
   if (gemini) {
-    const model = gemini.getGenerativeModel({
-      model: "gemini-3.8-flash",
-      systemInstruction: options.systemPrompt,
-    });
-    const result = await model.generateContent(options.userMessage);
-    const text = result.response.text();
-    return {
-      content: text,
-      usage: {
-        inputTokens:  result.response.usageMetadata?.promptTokenCount     ?? 0,
-        outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
-      },
-    };
+    let lastError: unknown;
+    for (const modelName of GEMINI_MODELS) {
+      try {
+        const model = gemini.getGenerativeModel({
+          model: modelName,
+          systemInstruction: options.systemPrompt,
+        });
+        const result = await model.generateContent(options.userMessage);
+        const text = result.response.text();
+        return {
+          content: text,
+          usage: {
+            inputTokens:  result.response.usageMetadata?.promptTokenCount     ?? 0,
+            outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
+          },
+        };
+      } catch (err) {
+        const msg = String(err);
+        // Bei 503 (Überlast) oder 404 (Modell nicht verfügbar): nächstes Modell versuchen
+        if (msg.includes("503") || msg.includes("404")) {
+          lastError = err;
+          continue;
+        }
+        throw err;
+      }
+    }
+    // Alle Gemini-Modelle fehlgeschlagen – zu Claude weitergehen
+    console.error("Alle Gemini-Modelle fehlgeschlagen:", lastError);
   }
 
   // Fallback: Claude
