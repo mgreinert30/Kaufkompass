@@ -171,7 +171,7 @@ export const CATEGORIES: CategoryConfig[] = [
     icon: "Wrench",
     family: "B",
     familyLabel: "Fahrzeuge & Mobilität",
-    status: "planned",
+    status: "available",
     priority: 10,
     allowedDocTypes: ["pdf", "jpg", "png"],
     inputFields: ["fahrzeug", "rechnung", "km"],

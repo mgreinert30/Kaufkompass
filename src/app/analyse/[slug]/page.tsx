@@ -19,6 +19,7 @@ const IMPLEMENTED_TOOLS: Record<string, string> = {
   "fenster-dach-check":      "/analyse/fenster-dach-check",
   "bad-renovierung-check":   "/analyse/bad-renovierung-check",
   "moebel-kaufcheck":        "/analyse/moebel-kaufcheck",
+  "autoreparatur-check":     "/analyse/autoreparatur-check",
 };
 
 export async function generateStaticParams() {
