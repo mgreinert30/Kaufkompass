@@ -10,7 +10,11 @@ interface Props {
 
 // Mapping: Welche Slugs haben eine vollständige Implementierung?
 const IMPLEMENTED_TOOLS: Record<string, string> = {
-  "immobilien-kaufcheck": "/analyse/immobilien-kaufcheck",
+  "immobilien-kaufcheck":    "/analyse/immobilien-kaufcheck",
+  "gebrauchtwagen-check":    "/analyse/gebrauchtwagen-check",
+  "photovoltaik-check":      "/analyse/photovoltaik-check",
+  "sanierungskosten-check":  "/analyse/sanierungskosten-check",
+  "waermepumpen-check":      "/analyse/waermepumpen-check",
 };
 
 export async function generateStaticParams() {

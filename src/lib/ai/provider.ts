@@ -1,53 +1,72 @@
 // KI-Provider-Abstraktion
-// Einzige Stelle im Projekt, die den Anthropic-Client instanziiert.
-// API-Schlüssel ausschließlich aus Umgebungsvariable ANTHROPIC_API_KEY.
+// Primär: Gemini (GEMINI_API_KEY)
+// Fallback: Claude (ANTHROPIC_API_KEY)
+// Ohne Keys: Berechnungen laufen weiter, KI-Interpretation entfällt
 
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import Anthropic from "@anthropic-ai/sdk";
 import type { AIRequestOptions, AIResponse } from "./types";
 
-let client: Anthropic | null = null;
+let geminiClient: GoogleGenerativeAI | null = null;
+let anthropicClient: Anthropic | null = null;
 
-function getClient(): Anthropic {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    throw new Error("ANTHROPIC_API_KEY nicht konfiguriert");
-  }
-  if (!client) {
-    client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-  }
-  return client;
+function getGemini(): GoogleGenerativeAI | null {
+  if (!process.env.GEMINI_API_KEY) return null;
+  if (!geminiClient) geminiClient = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  return geminiClient;
 }
 
-export async function callAI(options: AIRequestOptions): Promise<AIResponse> {
-  const c = getClient();
-
-  const message = await c.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: options.maxTokens ?? 4000,
-    system: options.systemPrompt,
-    messages: [{ role: "user", content: options.userMessage }],
-  });
-
-  const block = message.content[0];
-  if (block.type !== "text") throw new Error("Unerwarteter Antworttyp vom KI-Modell");
-
-  return {
-    content: block.text,
-    usage: {
-      inputTokens: message.usage.input_tokens,
-      outputTokens: message.usage.output_tokens,
-    },
-  };
+function getAnthropic(): Anthropic | null {
+  if (!process.env.ANTHROPIC_API_KEY) return null;
+  if (!anthropicClient) anthropicClient = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  return anthropicClient;
 }
 
 export function isAIAvailable(): boolean {
-  return Boolean(process.env.ANTHROPIC_API_KEY);
+  return Boolean(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY);
 }
 
-// Versucht, JSON aus einer KI-Antwort zu extrahieren (robuste Variante)
+export async function callAI(options: AIRequestOptions): Promise<AIResponse> {
+  // Primär: Gemini
+  const gemini = getGemini();
+  if (gemini) {
+    const model = gemini.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      systemInstruction: options.systemPrompt,
+    });
+    const result = await model.generateContent(options.userMessage);
+    const text = result.response.text();
+    return {
+      content: text,
+      usage: {
+        inputTokens:  result.response.usageMetadata?.promptTokenCount     ?? 0,
+        outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
+      },
+    };
+  }
+
+  // Fallback: Claude
+  const anthropic = getAnthropic();
+  if (anthropic) {
+    const msg = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: options.maxTokens ?? 4000,
+      system: options.systemPrompt,
+      messages: [{ role: "user", content: options.userMessage }],
+    });
+    const block = msg.content[0];
+    if (block.type !== "text") throw new Error("Unerwarteter Antworttyp vom KI-Modell");
+    return {
+      content: block.text,
+      usage: { inputTokens: msg.usage.input_tokens, outputTokens: msg.usage.output_tokens },
+    };
+  }
+
+  throw new Error("Keine KI konfiguriert – GEMINI_API_KEY oder ANTHROPIC_API_KEY fehlt");
+}
+
 export function extractJSON<T>(text: string): T {
-  const jsonMatch = text.match(/```json\n?([\s\S]*?)\n?```/) ??
-                    text.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) throw new Error("Kein JSON in KI-Antwort gefunden");
-  const raw = jsonMatch[1] ?? jsonMatch[0];
-  return JSON.parse(raw) as T;
+  const m = text.match(/```json\n?([\s\S]*?)\n?```/) ?? text.match(/\{[\s\S]*\}/);
+  if (!m) throw new Error("Kein JSON in KI-Antwort gefunden");
+  return JSON.parse(m[1] ?? m[0]) as T;
 }
