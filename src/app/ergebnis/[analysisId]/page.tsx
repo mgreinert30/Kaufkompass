@@ -21,6 +21,7 @@ import { WaermepumpeResultDashboard } from "@/components/analyse/waermepumpe/res
 import { KuecheResultDashboard } from "@/components/analyse/kueche/result-dashboard";
 import { FensterDachResultDashboard } from "@/components/analyse/fenster-dach/result-dashboard";
 import { BadRenovierungResultDashboard } from "@/components/analyse/bad-renovierung/result-dashboard";
+import { MoebelResultDashboard } from "@/components/analyse/moebel/result-dashboard";
 
 type LoadState = "loading" | "found" | "expired" | "error";
 
@@ -237,6 +238,9 @@ function ToolDashboard({ analyse }: { analyse: GespeicherteAnalyse }) {
     case "bad-renovierung-check":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return <BadRenovierungResultDashboard result={result as any} />;
+    case "moebel-kaufcheck":
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return <MoebelResultDashboard result={result as any} />;
     default:
       return <UnbekanntesTool analyse={analyse} />;
   }

@@ -140,7 +140,7 @@ export const CATEGORIES: CategoryConfig[] = [
     icon: "Sofa",
     family: "A",
     familyLabel: "Immobilien, Wohnen & Energie",
-    status: "planned",
+    status: "available",
     priority: 8,
     allowedDocTypes: ["pdf", "jpg", "png"],
     inputFields: ["kategorie", "hersteller", "material", "preis"],
